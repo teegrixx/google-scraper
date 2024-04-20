@@ -5,10 +5,10 @@ setup(
     version='1.0.0',
     packages=find_packages(),
     entry_points={
-        'console_scripts': [
-            'google-scraper=google_scraper.scraper:main'
-        ]
-    },
+    'console_scripts': [
+        'scrape=google_scraper.scraper:main'
+    ]
+},
     install_requires=[
         'requests',
         'beautifulsoup4'
