@@ -4,6 +4,7 @@ import sys
 import requests
 from bs4 import BeautifulSoup
 import time
+from google_scraper.scraper import main
 
 def google_search(query, num_pages=1):
     all_results = []
