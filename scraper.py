@@ -37,7 +37,7 @@ def save_links_to_file(links, filename):
         for link in links:
             f.write(link + "\n")
 
-if __name__ == "__main__":
+def main():
     if len(sys.argv) != 3:
         print("Usage: ./google_scraper.py <search_query> <num_pages>")
         sys.exit(1)
@@ -49,3 +49,6 @@ if __name__ == "__main__":
     output_file = "search_results.txt"
     save_links_to_file(results, output_file)
     print(f"Search results saved to {output_file}")
+
+if __name__ == "__main__":
+    main()
