@@ -14,14 +14,18 @@ def google_search(query, num_pages=1):
         headers = {"User-Agent": "Mozilla/5.0"}
         for attempt in range(retries):
             try:
+                print(f"Fetching page {page + 1}, attempt {attempt + 1}...")
                 response = requests.get(url, headers=headers)
                 response.raise_for_status()  # Raise an exception for 4xx and 5xx status codes
                 soup = BeautifulSoup(response.text, "html.parser")
                 links = soup.find_all("a")
+                print(f"Found {len(links)} links on page {page + 1}")
                 for link in links:
                     href = link.get("href")
                     if href.startswith("/url?q="):
-                        all_results.append(href.split("/url?q=")[1].split("&")[0])
+                        url = href.split("/url?q=")[1].split("&")[0]
+                        print(f"Extracted URL: {url}")
+                        all_results.append(url)
                 break  # Exit the retry loop if successful
             except (requests.exceptions.RequestException, urllib3.exceptions.HTTPError) as e:
                 print(f"Error fetching page {page + 1}, attempt {attempt + 1}: {e}")
